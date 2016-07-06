@@ -1,7 +1,7 @@
 # Smart Home
 
 # Broker
-The service should work with any broker, I personally used mosquitto. Since your broker will need to be always on I advise using a low power device, such as a [raspberry pi](http://www.switchdoc.com/2016/02/tutorial-installing-and-testing-mosquitto-mqtt-on-raspberry-pi/).
+The project should work with any mqtt broker, such as [mosquitto](https://mosquitto.org/). Since your broker will need to be always on I advise using a low power device, such as a [raspberry pi](http://www.switchdoc.com/2016/02/tutorial-installing-and-testing-mosquitto-mqtt-on-raspberry-pi/).
 
 # Setup
 The esp8266 is a relatively simplistic device, where users are usually doing some operations on any number of the available pins. So I wanted to create a method for setting up new esp8266 based devices where users wouldn't need to write new simplistic programs for each device conceived. Also uploading code to the esp8266 can be a bit of a pain and so moving that responsibility to a mobile application allows the user to change the functionality of the esp8266 without ever having to actually upload any code or even touch the device itself.
