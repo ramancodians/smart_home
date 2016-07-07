@@ -2,6 +2,8 @@
 
 This project was conceived as my honors project, and the goal of the project is to make it easier for people to create a network of modules which communicate primarily with each other through an mqtt broker. Modules, in this case, are essentially anything that performs some task within the house, which can be anything from monitoring the quality of the air to automatically feeding your pets while you are away. The complexity will vary quite a bit between modules, some will just send data and others will do more interesting things (automation, robotics, etc).
 
+I am of the opinion that most modules should not and do not need to be "internet enabled" (meaning that the user can interface directly with the device from outside of the local network). The idea of a "smart home" is that the home should be smart enough to handle itself without help from the outside world, it should be its own enclosed entity.
+
 # Why DIY?
 
 There are commercial products for many "smart devices" that you would potentially want, but there are a few issues that are quite apparent. There is no inter connectivity between products, for each "smart device" you buy there is usually single way to interface with it, so you will most likely need to have a different application for every new device. Another issue is the price, which is usually quite high, especially if you are considering several devices. Lastly security and reliability are incredibly important in these kinds of devices and while dealing with these things yourself can be quite difficult, commercial products do not have the best track record in that area as of late (ex. [revolv](http://uk.businessinsider.com/googles-nest-closing-smart-home-company-revolv-bricking-devices-2016-4), [nest](http://www.cbc.ca/news/technology/nest-smart-home-problems-1.3410143), [foscam](http://thenewstack.io/snooping-webcam-reveals-security-dangers-internet-things/)).
@@ -9,10 +11,6 @@ There are commercial products for many "smart devices" that you would potentiall
 # Hardware
 
 There are two pieces of hardware that I believe should cover most (if not all) conceivable devices within a smart home (microcontroller vs microprocessor). The first being the esp8266 (microcontroller), which provides several (varies by model) I/O pins that are used to interface with devices, as well as a built in wifi chip. Generally, if you are dealing with things that you control, like sensors, motors, or servos, a micro controller is a good option. The second is the raspberry pi (microprocessor) which is a step up from the esp8266 as it is a single board computer (usually running linux), with ports for USB, HDMI, audio, and has a fair bit of processing power (varies by model). The raspberry pi has weaker and/or flakier I/O capabilities but is great for when you are doing anything that requires heavy processing, such as mathematics.
-
-# Internet of things
-
-I am of the opinion that most modules should not and do not need to be "internet enabled" (meaning that the user can interface directly with the device from outside of the local network). The idea of a "smart home" is that the home should be smart enough to handle itself without help from the outside world, it should be its own enclosed entity. The consideration usually comes down to the change in attack vector vs change in convenience.
 
 # Mqtt
 For module communications, the protocol needed to be lightweight to be fast and energy efficient and fortunately there is a protocol that is suited to such a scenario, which is mqtt (formerly mq telemetry transport).
