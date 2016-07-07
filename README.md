@@ -12,12 +12,12 @@ There are two pieces of hardware that I believe should cover most (if not all) c
 
 # Internet of things
 
-I am of the opinion that most modules do not need to be "internet enabled" (meaning that the user can interface directly with the device from outside of the local network). The consideration usually comes down to the change in attack vector vs change in convenience. Having a simple notification system would certainly be useful but anything beyond that could be asking for trouble. The idea of a "smart home" is that the home should be smart enough to handle itself without help from the outside world, it should be its own enclosed entity.
+I am of the opinion that most modules should not and do not need to be "internet enabled" (meaning that the user can interface directly with the device from outside of the local network). The idea of a "smart home" is that the home should be smart enough to handle itself without help from the outside world, it should be its own enclosed entity. The consideration usually comes down to the change in attack vector vs change in convenience.
 
 # Mqtt
-For module communications, the protocol needed to be lightweight to be fast and energy efficient and fortunately there is a protocol that is suited to such a scenario, which is called mqtt (formerly mq telemetry transport).
+For module communications, the protocol needed to be lightweight to be fast and energy efficient and fortunately there is a protocol that is suited to such a scenario, which is mqtt (formerly mq telemetry transport).
 
-The project should work with any mqtt broker, such as [mosquitto](https://mosquitto.org/). Since your broker will need to remain active at all times, I advise using a low power device, such as a [raspberry pi](http://www.switchdoc.com/2016/02/tutorial-installing-and-testing-mosquitto-mqtt-on-raspberry-pi/).
+The project should work with any mqtt broker, personally I used [mosquitto](https://mosquitto.org/). Since your broker will need to remain active at all times, I advise using a low power device, such as a [raspberry pi](http://www.switchdoc.com/2016/02/tutorial-installing-and-testing-mosquitto-mqtt-on-raspberry-pi/).
 
 # Mobile App (ESP8266)
 The esp8266 is a relatively simplistic device, where users are usually doing some operations on any number of the available pins. So I wanted to create a method for setting up new esp8266 based devices where users wouldn't need to write new simple programs for each device conceived. Also uploading code to the esp8266 can be a bit of a pain and so moving that responsibility to a mobile application allows the user to change the functionality of the esp8266 without ever having to actually upload any code or even touch the device itself.
