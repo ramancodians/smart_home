@@ -3,7 +3,7 @@
 #include "HubClient.h"
 #include "Util.h"
 
-char SERVER_PSK[] = "sparkfun";
+char SERVER_PSK[] = "";
 byte ASCII_START = 48;
 
 /*
