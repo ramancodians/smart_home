@@ -39,4 +39,4 @@ ESP8266 Configuration (MQTT)
 
 # Mobile App
 
-Outside of device configuration, the mobile app primarily acts as a more user friendly interface to the network, as the alternative would be to grab an available mqtt client application and use that, which is still a possible option mind you (ex. [mqtt.fx](http://mqttfx.jfx4ee.org/) / [mymqtt](https://play.google.com/store/apps/details?id=at.tripwire.mqtt.client&hl=en)). Another function of the app is to determine who is within the house, or at least which mobile devices are currently connected to the broker.
+Outside of device configuration, the mobile app primarily acts as a more user friendly interface to the network, as the alternative would be to grab an available mqtt client app and use that, which is still a possible option mind you ([mqtt.fx](http://mqttfx.jfx4ee.org/) / [mymqtt](https://play.google.com/store/apps/details?id=at.tripwire.mqtt.client&hl=en)). Another function of the app is to determine who is within the house, or at least which mobile devices are currently connected to the broker.
