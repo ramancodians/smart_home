@@ -27,10 +27,11 @@ ESP8266 Initialization (HTTP)
 - Start mobile application and select initialize
 - Enter ssid and password of home network
 - Enter ip of the device running the broker
-- Enter title and location of the device
+- Enter title of device (ex. door, weather, light, etc)
+- Enter location of device (zone: front_yard, spec: left_gate)
 - Press submit
 
-After these steps the esp8266 should connect to the broker and will periodically publish a message, verify this and then continue with the steps below.
+The title and location for the device will form its unique id as well as every topic the device sends (ie. front_yard/left_gate/[topic_name]). After these steps the esp8266 should connect to the broker and will periodically publish a message, verify this and then continue with the steps below.
 
 ESP8266 Configuration (MQTT)
 - Connect to home access point

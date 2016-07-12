@@ -29,18 +29,9 @@ boolean HubClient::connect() {
   if(!PubSubClient::connected()) {
      // wait to connect to broker.
      while(!PubSubClient::connect(id)); 
-     // need a timeout on this
+     // need timeout here...
      
-     // also you may want to return false (triggering a reset) in the case that a broker connection cannot be made
-     // as that "could" indicate a false brokerIp... this is what is happening for wifi details above
-
-     /*
-      * you also need to consider being more forgiving as well. like attempting connections several times
-      * over several timeouts and keep a fail count or something so that all modules wont reset every 
-      * time something happens like wifi cuts out or the broker is unreachable...
-      */
-
-     
+  
      // renew subscriptions
      for(byte i = 0; i < cbsCount; i++)
        PubSubClient::subscribe(keys[i]);

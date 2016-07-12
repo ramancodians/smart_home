@@ -2,11 +2,12 @@
 #include <EEPROM.h>
 #include "HubClient.h"
 #include "Util.h"
+#include <ArduinoJson.h>
 
 char SERVER_PSK[] = "";
 byte ASCII_START = 48;
+StaticJsonBuffer<600> jsonBuffer;
 
-/*
 //pin types
 enum {
   DIGITAL = 0,
@@ -26,24 +27,29 @@ enum {
   PINS_SIZE
 };
 int pinCount;
-*/
 
-//config
+// eeprom details
 enum {
-  VERIF = 0,
-  BROKER_IP,
+  // config
+  BROKER_IP = 0,
   AP_SSID,
   AP_PASS,
   TITLE,
   ZONE,
   SPEC,
+  CONFIG_SIZE,
+
+  // registration
   SLEEP,
   //PINS, 
+  TEST,
 
-  CONFIG_SIZE
+  // other
+  VERIF,
+  EEPROM_SIZE
 };
 
-String values[CONFIG_SIZE];
+String values[EEPROM_SIZE];
 WiFiServer *server;
 HubClient *client;
 boolean appMode;
@@ -133,7 +139,13 @@ void reset(String payload) {
 }
 
 void registration(String payload) {
-  
+  JsonObject& root = jsonBuffer.parseObject(payload);
+  if (!root.success())
+    return;
+ 
+  values[TEST] = root["thing"].as<const char*>();
+  //writeEEPROM();
+  //ESP.reset();
 }
 
 void serverLoop() {  
@@ -158,9 +170,9 @@ void serverLoop() {
   int queryIndex = req.indexOf("?");
   if(queryIndex != -1) {
     req = req.substring(queryIndex + 1, req.length() - 9); 
-    parseDelimitedString(req, values, CONFIG_SIZE, 1, '&');
-    values[VERIF] = "1"; // swapping to module mode
-    values[SLEEP] = "-1";
+    //parseDelimitedString(req, values, CONFIG_SIZE, 1, '&');
+    parseDelimitedString(req, values, CONFIG_SIZE, '&');
+    swapToModuleMode();
     writeEEPROM();
     s += "<p>EEPROM Updated...</p>";
   }
@@ -173,16 +185,27 @@ void serverLoop() {
   resetable = true;
 }
 
+void swapToModuleMode() {
+  values[VERIF] = "1"; // swapping to module mode
+  values[SLEEP] = "-1";
+  // fill in more defaults...
+
+
+
+
+  
+}
+
 void hubClientLoop() {
   if(!client->connect()) 
     reset("");
-  client->publish("testing", "this is a test!");
+  client->publish("testing", values[TEST]);
 
   delay(1000);
 }
 
-void parseDelimitedString(String s, String *out, int len, int start, char delim) {
-  for(int i = start; i < len; i++) {
+void parseDelimitedString(String s, String *out, int len, char delim) {
+  for(int i = 0; i < len; i++) {
     int end = s.indexOf(delim);
     out[i] = s.substring(0, end);
     s = s.substring(end + 1);
@@ -191,7 +214,7 @@ void parseDelimitedString(String s, String *out, int len, int start, char delim)
 
 void writeEEPROM() {
   int accum = 0;
-  for(int i = 0; i < CONFIG_SIZE; i++) {
+  for(int i = 0; i < EEPROM_SIZE; i++) {
     byte entrySize = values[i].length();
     EEPROM.write(accum, entrySize);
     accum++;
@@ -206,7 +229,7 @@ void writeEEPROM() {
 
 void readEEPROM() {
   int accum = 0;
-  for(int i = 0; i < CONFIG_SIZE; i++) {
+  for(int i = 0; i < EEPROM_SIZE; i++) {
     byte entrySize = EEPROM.read(accum);
     accum++;
     byte j = 0;
