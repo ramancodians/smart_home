@@ -212,6 +212,11 @@ void parseDelimitedString(String s, String *out, int len, char delim) {
   }
 }
 
+/*
+ * EEPROM is a sequence of bytes.
+ * Each entry in the eeprom is a sequence of characters (bytes).
+ * Each entry takes one extra byte to store the size of the entry.
+ */
 void writeEEPROM() {
   int accum = 0;
   for(int i = 0; i < EEPROM_SIZE; i++) {
@@ -219,14 +224,12 @@ void writeEEPROM() {
     EEPROM.write(accum, entrySize);
     accum++;
     byte j = 0;
-    for(; j < entrySize; j++) {
+    for(; j < entrySize; j++)
       EEPROM.write(accum + j, values[i][j]);
-    }
     accum += (j + 1);
   }
   EEPROM.commit();
 }
-
 void readEEPROM() {
   int accum = 0;
   for(int i = 0; i < EEPROM_SIZE; i++) {
