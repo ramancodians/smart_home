@@ -23,7 +23,7 @@ The hub is concerned with essentially everything outside of the modules. It has 
 # ESP8266 Setup
 The esp8266 is a relatively simplistic device, where users are usually doing some operations on any number of the available pins. So I wanted to create a method for setting up new esp8266 based devices where users wouldn't need to write new simple programs for each device conceived. Also uploading code to the esp8266 can be a bit of a pain and so moving that responsibility to a mobile application allows the user to change the functionality of the esp8266 without ever having to actually upload any code or even touch the device itself. Follow the steps below to initialize and configure your esp8266 device.
 
-ESP8266 Initialization (HTTP)
+ESP8266 Configuration (HTTP)
 - Flash arduino program to esp8266
 - Connect to new access point
 - Start mobile application and select initialize
@@ -33,9 +33,9 @@ ESP8266 Initialization (HTTP)
 - Enter location of device (ex. zone: front_yard, spec: left_gate)
 - Press submit
 
-The title and location for the device will form its unique id as well as each topic name that the device publishes to (ie. front_yard/left_gate/[topic_name]). After these steps the esp8266 should connect to the broker and will periodically publish a greeting message. After verifying this continue with the steps below to configure the functionality of the device.
+The title and location for the device will form its unique id as well as each topic name that the device publishes to (ie. reed/front_yard/left_gate/[topic_name]). After these steps the esp8266 should connect to the broker and will periodically publish a greeting message. After verifying this continue with the steps below to configure the functionality of the device.
 
-ESP8266 Configuration (MQTT)
+ESP8266 Initialization (MQTT)
 - Connect to home access point
 - Start mobile application and select configure
 - ...
