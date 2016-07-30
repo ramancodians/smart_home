@@ -1,0 +1,14 @@
+{
+  "name": "smart_home",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "websocket-stream": "latest",
+    "aedes": "latest",
+    "mongodb": "latest",
+    "mongoose": "latest",
+    "twilio": "latest",
+    "nodemailer": "latest"
+  }
+}
