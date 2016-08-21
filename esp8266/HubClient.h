@@ -1,5 +1,5 @@
 
-#include "PubSubClient.h"
+#include <PubSubClient.h>
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include "Util.h"
@@ -26,4 +26,5 @@ private:
   fptr callbacks[MAX_CBS];
   byte cbsCount;
   byte getCbIndex(char* key);
+  byte attemptCount;
 };

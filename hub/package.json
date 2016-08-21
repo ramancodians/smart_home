@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {},
   "dependencies": {
-    "websocket-stream": "latest",
-    "aedes": "latest",
-    "mongodb": "latest",
-    "mongoose": "latest",
-    "twilio": "latest",
-    "nodemailer": "latest"
+    "aedes": "^0.20.0",
+    "mongodb": "^2.2.5",
+    "mongoose": "^4.5.9",
+    "nodemailer": "^2.5.0",
+    "twilio": "^2.9.2",
+    "websocket-stream": "^3.2.1"
   }
 }

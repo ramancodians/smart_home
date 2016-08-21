@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var fs = require('fs');
 var util = require('./lib/util.js');
+var os = require( 'os' );
 
 // Load mongoose schemas.
 mongoose.Promise = global.Promise;
@@ -11,3 +12,4 @@ for (var i = 0; i < models.length; i++)
   require('./' + models[i])();
 
 require('./lib/mqtt').listen();
+console.log(os.networkInterfaces());

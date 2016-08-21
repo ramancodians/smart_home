@@ -28,8 +28,12 @@ boolean HubClient::connect() {
   }
   if(!PubSubClient::connected()) {
      // wait to connect to broker.
-     while(!PubSubClient::connect(id)); 
-     // need timeout here...
+     while(!PubSubClient::connect(id)) {
+      if(attemptCount > 10)
+        return false;
+      attemptCount++; 
+     }
+     // need timeout here instead of attempt count
      
   
      // renew subscriptions
