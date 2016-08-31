@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 var notification = require('./notification');
 var aedes = require('aedes');
-var websocket = require('websocket-stream')
+var websocket = require('websocket-stream');
 
 exports.listen = function() {
   aedes = aedes({
@@ -13,7 +13,7 @@ exports.listen = function() {
   aedes.authorizePublish = authorizePublish;
   var server = net.createServer(aedes.handle);
   server.listen(1883);
-  websocket.createServer({server: server, port: 8080}, aedes.handle);
+  websocket.createServer({port: 8080}, aedes.handle);
 }
 
 var authorizePublish = function (client, packet, callback) {

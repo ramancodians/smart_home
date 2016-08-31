@@ -4,29 +4,9 @@
 #include "Util.h"
 #include <ArduinoJson.h>
 
-char SERVER_PSK[] = "";
-byte ASCII_START = 48;
-StaticJsonBuffer<600> jsonBuffer;
-
-//pin types
-enum {
-  DIGITAL = 0,
-  ANALOG,
-  //special cases
-  DS18B20,
-
-  TYPES_SIZE
-};
-
-//pin
-enum {
-  NUM = 0,
-  TYPE,
-  MODE,
-  
-  PINS_SIZE
-};
-int pinCount;
+const char SERVER_PSK[] = "";
+const byte ASCII_START = 48;
+const byte GPIO[] = {16, 14, 12, 13, 5, 4, 0, 2, 15};
 
 // eeprom details
 enum {
@@ -41,8 +21,7 @@ enum {
 
   // registration
   SLEEP,
-  //PINS, 
-  TEST,
+  PINS,
 
   // other
   VERIF,
@@ -54,6 +33,7 @@ WiFiServer *server;
 HubClient *client;
 boolean appMode;
 boolean resetable;
+byte flip = LOW;
 
 void setup() 
 {
@@ -90,10 +70,6 @@ void setupServer() {
   server->begin();
 }
 
-//byte getPinVal(int i, int v) {
-//  return values[PINS][i*PINS_SIZE + v] - ASCII_START;
-//}
-
 void setupHubClient() {
   String id = "";
   id += values[TITLE];
@@ -103,9 +79,11 @@ void setupHubClient() {
   id += values[SPEC];
 
   // setup pin modes
-  //pinCount = values[PINS].length() / PINS_SIZE;
-  //for(int i = 0; i < pinCount; i++)
-  //  pinMode(getPinVal(i, NUM), getPinVal(i, MODE));
+  for(int i = 0; i < values[PINS].length(); i++) {
+    byte mode = values[PINS][i]- ASCII_START;
+    if(mode >= 0 && mode <= 2)
+      pinMode(GPIO[i], mode);
+  }
 
   WiFi.mode(WIFI_STA);
   client = new HubClient(values[BROKER_IP], id, Util::stringToString(values[AP_SSID]), Util::stringToString(values[AP_PASS]));
@@ -113,8 +91,7 @@ void setupHubClient() {
   client->registerSubscription("registration", &registration);
 
   int sleep = values[SLEEP].toInt();
-  if(sleep < 0) {
-    // subscribe to some more stuff...
+  if(sleep == -1) {
   } 
   else {
     hubClientLoop();
@@ -135,24 +112,31 @@ void reset(String payload) {
   char c = '0' - ASCII_START;
   values[VERIF] = String(c);
   writeEEPROM();
-  ESP.reset();
+  ESP.restart();
 }
 
 void registration(String payload) {
+  StaticJsonBuffer<512> jsonBuffer;
   JsonObject& root = jsonBuffer.parseObject(payload);
   if (!root.success())
     return;
- 
-  values[TEST] = root["thing"].as<const char*>();
-  //writeEEPROM();
-  //ESP.reset();
+  resetRegistrationValues();
+
+  String pins = root["pins"];
+  values[PINS] = pins;
+  String sleep = root["sleep"];
+  values[SLEEP] = sleep;
+  
+  writeEEPROM();
+  ESP.restart();
 }
 
 void serverLoop() {  
   WiFiClient client = server->available();
   if(resetable) {
     delay(1000);
-    ESP.reset();
+    //ESP.reset();
+    ESP.restart();
   }
   if (!client)
     return;
@@ -170,9 +154,9 @@ void serverLoop() {
   int queryIndex = req.indexOf("?");
   if(queryIndex != -1) {
     req = req.substring(queryIndex + 1, req.length() - 9); 
-    //parseDelimitedString(req, values, CONFIG_SIZE, 1, '&');
     parseDelimitedString(req, values, CONFIG_SIZE, '&');
-    swapToModuleMode();
+    values[VERIF] = "1"; // swapping to module mode
+    resetRegistrationValues();
     writeEEPROM();
     s += "<p>EEPROM Updated...</p>";
   }
@@ -185,23 +169,35 @@ void serverLoop() {
   resetable = true;
 }
 
-void swapToModuleMode() {
-  values[VERIF] = "1"; // swapping to module mode
+void resetRegistrationValues() {
   values[SLEEP] = "-1";
+  values[PINS] = "";
   // fill in more defaults...
-
-
-
-
-  
 }
 
 void hubClientLoop() {
   if(!client->connect()) 
     reset("");
-  client->publish("testing", values[TEST]);
 
-  delay(1000);
+  // for testing purposes
+  client->publish("pulse", "I am alive!");
+  
+  //perform default task based on pin mode
+  for(int i = 0; i < values[PINS].length(); i++) {
+    byte pin = GPIO[i];
+    byte mode = values[PINS][i] - ASCII_START;
+
+    switch(mode) {
+      case INPUT:
+      case INPUT_PULLUP:
+        client->publish("GPIO_" + String(pin), String(digitalRead(pin)));
+      case OUTPUT:
+        flip = (flip == LOW) ? HIGH : LOW;
+        digitalWrite(pin, flip);
+        break;
+    }
+  }
+  delay(500);
 }
 
 void parseDelimitedString(String s, String *out, int len, char delim) {

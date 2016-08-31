@@ -9,6 +9,6 @@
     "mongoose": "^4.5.9",
     "nodemailer": "^2.5.0",
     "twilio": "^2.9.2",
-    "websocket-stream": "^3.2.1"
+    "websocket-stream": "^3.3.0"
   }
 }
