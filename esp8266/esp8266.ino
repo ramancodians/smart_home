@@ -135,7 +135,6 @@ void serverLoop() {
   WiFiClient client = server->available();
   if(resetable) {
     delay(1000);
-    //ESP.reset();
     ESP.restart();
   }
   if (!client)
