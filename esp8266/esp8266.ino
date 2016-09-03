@@ -90,6 +90,7 @@ void setupHubClient() {
   client->registerSubscription("reset", &reset);
   client->registerSubscription("registration", &registration);
 
+  /*
   int sleep = values[SLEEP].toInt();
   if(sleep == -1) {
   } 
@@ -98,6 +99,7 @@ void setupHubClient() {
     client->disconnect();
     ESP.deepSleep(sleep * 1000000);
   }
+  */
 }
 
 void loop() 
