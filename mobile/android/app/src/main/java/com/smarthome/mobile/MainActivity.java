@@ -1,4 +1,4 @@
-package com.mobile;
+package com.smarthome.mobile;
 
 import com.facebook.react.ReactActivity;
 
