@@ -1,6 +1,6 @@
 # Smart Home
 
-[![](http://img.youtube.com/vi/rsrqRjhaspY/0.jpg)](https://youtu.be/rsrqRjhaspY)
+[![](https://goo.gl/photos/pwHYuo1soxVowAig6)](https://youtu.be/rsrqRjhaspY)
 
 
 
