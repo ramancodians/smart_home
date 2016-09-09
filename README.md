@@ -8,11 +8,11 @@ The goal of the smart home project is a cheap and simplistic solution for creati
 
 The hub is a nodejs app that consists primarily of an mqtt broker which facilitates communication throughout the system and so it needs to be running at all times. You will also need to install and setup mongodb for the app to work properly.
 
-'''
+```
 cd hub
 npm install
 node app.js
-'''
+```
 
 ### Smart Devices
 
@@ -23,17 +23,17 @@ At the center of our smart devices is a wifi connected microcontroller (ESP8266)
   Note: this library is a fork of another library that uses the same name so you need to change the name in "library.properties" to something unique to prevent arduino from updating the library because it will download the other library and replace the correct one.
 - [ArduinoJson](https://github.com/bblanchon/ArduinoJson)
 
-Now connect your esp8266, open the .ino sketch under /esp8266/, select the appropriate port and board from the boards manager, and press deploy.
+Now connect your esp8266, open the .ino sketch under /esp8266/, select the appropriate port and board from the boards manager, and press the upload button.
 
 ### Mobile App
 
 The mobile app is a react native application so you can download the app [here](https://play.google.com/store/apps/details?id=com.smarthome.mobile) or download this repo and [deploy](http://facebook.github.io/react-native/docs/getting-started.html) directly on your device. Note that the app only works with android at the moment as I have not properly configured the ios side yet.
 
-'''
+```
 cd mobile
 npm install
 npm run-script android
-'''
+```
 
 ## Demonstration
 
