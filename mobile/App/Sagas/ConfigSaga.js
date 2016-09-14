@@ -5,8 +5,8 @@ import Actions from '../Actions/Creators'
 function * sendConfig(config) {
     let url = 'http://192.168.4.1/?';
 
-    for(var param in config)
-      url += config[param] + '&';
+    for(let i = 0; i < config.length; i++)
+      url += config[i] + '&';
     try {
       const response = yield call(fetch, url, {
         timeout: 10000, // not currently working, it is much longer...

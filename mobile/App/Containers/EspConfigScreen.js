@@ -43,7 +43,7 @@ class EspConfigScreen extends React.Component {
   handlePressSubmit () {
     const {dispatch} = this.props
     const {ip, ssid, pass, title, zone, spec} = this.state;
-    dispatch(Actions.submitConfig({ip, ssid, pass, title, zone, spec}));
+    dispatch(Actions.submitConfig([ip, ssid, pass, title, zone, spec]));
   }
 
   renderTextView(name) {

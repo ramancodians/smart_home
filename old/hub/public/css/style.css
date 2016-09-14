@@ -1,0 +1,56 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+
+body {
+  padding: 30px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h2 {
+	margin:0 0 .5em 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+table tr.active {
+  background: #ccc;
+}
+
+.noclose .ui-dialog-titlebar-close
+{
+  display:none;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#modulesDialog, #hookRegistrationDialog {
+  padding: 0.5em;
+  color: #ffffff;
+  background-color: #6600ff;
+}
+
+#wrapper {
+	padding-left:312px;
+	position:relative;
+}
+
+fieldset {
+	border:0;
+	padding:0; margin:0;
+}
