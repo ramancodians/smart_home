@@ -27,7 +27,7 @@ Now connect your esp8266, open the .ino sketch under /esp8266/, select the appro
 
 ### Mobile App
 
-The mobile app is a react native application so you can download the app [here](https://play.google.com/store/apps/details?id=com.smarthome.mobile) or download this repo and [deploy](http://facebook.github.io/react-native/docs/getting-started.html) directly on your device. Note that the app only works with android at the moment as I have not properly configured the ios side yet.
+To use, download 'mobile' directory and [deploy](http://facebook.github.io/react-native/docs/getting-started.html) directly on your device. Note that the app only works with android at the moment as I have not properly configured the ios side yet.
 
 ```
 cd mobile
