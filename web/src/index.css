@@ -1,0 +1,44 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+img, p { 
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+p {
+  font-size: 16;
+  text-align: center;
+  margin: auto;
+}
+
+.bar {
+  margin: auto;
+  position: relative;
+}
+
+.centered {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.box {
+  overflow: auto; 
+  padding: 15px;
+}
+
+.icon {
+    padding: 3px;
+}
