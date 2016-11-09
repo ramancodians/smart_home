@@ -9,6 +9,6 @@ The [hub](https://github.com/Introvertuous/smart_home/tree/master/hub) facilitat
 
 The [mobile application](https://github.com/Introvertuous/smart_home/tree/master/mobile) deals with module configuration, simplistic system interfacing, and acts as a module itself.
 
-Lastly the [web application](https://github.com/Introvertuous/smart_home/tree/master/web) will act as an administration / commander center for the entire system. 
+Lastly the [web application](https://github.com/Introvertuous/smart_home/tree/master/web) will act as an administration / command center for the entire system. 
 
 ## Demonstration [TODO]
