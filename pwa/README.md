@@ -1,6 +1,6 @@
 # Progressive Web application
 
-The administration application will deal with all interfacing with the system and should work perfectly online or offline, on any platform (hence [PWA](https://developers.google.com/web/progressive-web-apps/)). Here are the features that it will be concerned with:
+The administration application will deal with all interfacing with the system and should work perfectly online or offline, on any platform (hence [PWA](https://developers.google.com/web/progressive-web-apps/)). Here are some features that it will be concerned with:
 - module configuration
 - when [installed on a mobile device](https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android?hl=en) will act as a module itself
 - ...
