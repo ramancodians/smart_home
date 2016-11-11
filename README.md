@@ -7,6 +7,6 @@ The goal of the smart home project is a cheap and simplistic solution for creati
 
 The [hub](https://github.com/Introvertuous/smart_home/tree/master/hub) facilitates communications between modules and users.
 
-The [progressive web application]() will act as an administration interface for the entire system.
+The [progressive web application](https://github.com/Introvertuous/smart_home/tree/master/pwa) will act as an administration interface for the entire system.
 
 ## Demonstration [TODO]
