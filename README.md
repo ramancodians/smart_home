@@ -3,12 +3,10 @@ The goal of the smart home project is a cheap and simplistic solution for creati
 
 ## Sections
 
-[Modules](https://github.com/Introvertuous/smart_home/tree/master/modules) will do anything from monitor the quality of the air to automatically feed your pets while you are away. 
+[Modules](https://github.com/Introvertuous/smart_home/tree/master/modules) will do anything from monitor the quality of the air to automatically feed your pets while you are away.
 
-The [hub](https://github.com/Introvertuous/smart_home/tree/master/hub) facilitates communications between modules and users. 
+The [hub](https://github.com/Introvertuous/smart_home/tree/master/hub) facilitates communications between modules and users.
 
-The [mobile application](https://github.com/Introvertuous/smart_home/tree/master/mobile) deals with module configuration, simplistic system interfacing, and acts as a module itself.
-
-Lastly the [web application](https://github.com/Introvertuous/smart_home/tree/master/web) will act as an administration / command center for the entire system. 
+The [progressive web application]() will act as an administration interface for the entire system.
 
 ## Demonstration [TODO]
