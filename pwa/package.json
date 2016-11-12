@@ -17,7 +17,7 @@
     "redux": "^3.6.0"
   },
   "scripts": {
-    "deploy": "react-scripts build && cp build/index.html build/200.html && surge -p build -d smarthome.surge.sh",
+    "deploy": "react-scripts build && cp build/index.html build/200.html && surge -p build -d https://smarthome.surge.sh",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
