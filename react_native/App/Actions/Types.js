@@ -1,0 +1,12 @@
+import { createTypes } from '../Lib/Redux'
+
+export default createTypes(`
+  CONFIG_SUBMIT
+  CONFIG_RESPONSE
+  MQTT_CONNECT
+  MQTT_CONNECT_AND_PUBLISH
+  MQTT_CONNECTED
+  MQTT_SEND_MESSAGE
+  MQTT_SUBSCRIBE
+  MQTT_MESSAGE_RECIEVED
+`)
